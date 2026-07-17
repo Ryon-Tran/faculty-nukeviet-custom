@@ -4,7 +4,7 @@
         <em class="fa fa-user fa-lg"></em> <span class="hidden-xs">ĐĂNG NHẬP</span>
     </a>
     
-    <div class="login-dropdown-content" style="position: absolute; right: 0; top: 120%; width: 340px; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border-radius: 12px; padding: 25px; z-index: 1000; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; border: 1px solid #eee;">
+    <div class="login-dropdown-content" style="position: absolute; right: 0; top: 120%; width: 340px; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border-radius: 12px; padding: 25px; z-index: 999999; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; border: 1px solid #eee;">
         <h3 style="margin-top: 0; font-size: 18px; color: #333; text-align: center; margin-bottom: 20px; font-weight: bold;">Đăng nhập hệ thống</h3>
         <!-- BEGIN: display_form -->
         {FILE "login_form.tpl"}
@@ -17,6 +17,16 @@
 </div>
 
 <style>
+/* Cầu tàng hình chống mất hover do khoảng trống (gap) */
+.login-dropdown-wrapper .login-dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Bù đắp khoảng trống do top: 120% */
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: transparent;
+}
 .login-dropdown-wrapper:hover .login-dropdown-content,
 .login-dropdown-wrapper.active .login-dropdown-content {
     opacity: 1 !important;
@@ -73,7 +83,7 @@ $(document).ready(function() {
     <a href="javascript:void(0);" class="login-dropdown-toggle custom-topbar-user" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; text-decoration: none; padding: 5px 0; transition: all 0.2s;">
         <em class="fa fa-user fa-lg"></em>
     </a>
-    <div class="login-dropdown-content" style="position: absolute; right: 0; top: 120%; width: 280px; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border-radius: 12px; padding: 20px; z-index: 1000; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; border: 1px solid #eee;">
+    <div class="login-dropdown-content" style="position: absolute; right: 0; top: 120%; width: 280px; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border-radius: 12px; padding: 20px; z-index: 999999; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; border: 1px solid #eee;">
         
         <div class="text-center margin-bottom-lg" style="padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; margin-bottom: 15px;">
             <div style="font-size: 16px; font-weight: bold; color: #333;">{USER.full_name}</div>
@@ -94,6 +104,16 @@ $(document).ready(function() {
     </div>
 </div>
 <style>
+/* Cầu tàng hình chống mất hover do khoảng trống (gap) */
+.login-dropdown-wrapper .login-dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Bù đắp khoảng trống do top: 120% */
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: transparent;
+}
 .login-dropdown-wrapper:hover .login-dropdown-content,
 .login-dropdown-wrapper.active .login-dropdown-content {
     opacity: 1 !important;

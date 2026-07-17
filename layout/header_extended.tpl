@@ -87,24 +87,35 @@
             background-color: #f4f5f7 !important;
             border-radius: 9999px !important;
             border: none !important;
-            height: 56px !important;
-            padding: 0 10px 0 20px !important;
+            height: 40px !important; /* Giảm mạnh cho mobile */
+            padding: 0 10px 0 15px !important;
             box-shadow: none !important;
             width: 100% !important;
             display: flex !important;
             align-items: center !important;
+          }
+          @media (min-width: 768px) {
+            .head-right-wrapper form div {
+                height: 56px !important;
+                padding: 0 10px 0 20px !important;
+            }
           }
           .head-right-wrapper input {
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             outline: none !important;
-            font-size: 16px !important;
+            font-size: 14px !important; /* Nhỏ hơn trên mobile */
             flex: 1 !important;
             width: 100% !important;
             height: 100% !important;
             padding: 0 !important;
             color: #334155 !important;
+          }
+          @media (min-width: 768px) {
+            .head-right-wrapper input {
+                font-size: 16px !important;
+            }
           }
           .head-right-wrapper button {
             background: transparent !important;
@@ -143,7 +154,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: 9999;
+                z-index: 9999999;
                 background: transparent;
                 border: none;
                 pointer-events: none;
@@ -256,9 +267,31 @@
             
             .nav-drawer .nv-main-menu .mobile-chevron {
                 display: block !important;
+                transition: transform 0.3s ease;
             }
             .nav-drawer .nv-main-menu .menu-arrow {
                 display: none !important;
+            }
+            .nav-drawer .nv-main-menu .custom-submenu {
+                position: static !important;
+                display: none !important;
+                width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 0 0 16px !important;
+                background: transparent !important;
+                transform: none !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                margin-top: 4px !important;
+            }
+            .nav-drawer .nv-main-menu .custom-submenu.active {
+                display: block !important;
+            }
+            .nav-drawer .nv-main-menu .custom-submenu li a {
+                padding: 10px 16px !important;
+                font-size: 13.5px !important;
+                color: #64748b !important;
             }
         }
         @media (min-width: 768px) {

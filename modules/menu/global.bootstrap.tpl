@@ -61,6 +61,26 @@
             border-radius: 6px !important;
             box-shadow: 0 14px 28px rgba(15, 23, 42, 0.14) !important;
         }
+        /* Cầu tàng hình giúp giữ menu không bị mất khi hover qua khoảng trống */
+        .custom-main-menu .custom-submenu::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: transparent;
+        }
+        /* Cầu tàng hình cho menu cấp 2 trở lên (nằm ngang) */
+        .custom-main-menu .nested-submenu::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -15px;
+            width: 15px;
+            background: transparent;
+        }
         .custom-main-menu > li > .custom-submenu {
             top: calc(100% + 1px) !important;
         }
@@ -151,11 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
         
         var isCurrentPage = false;
 
-        // Nếu có nv (không dùng URL rewrite), so sánh module
         if (linkNv && currentNv && linkNv === currentNv) {
             isCurrentPage = true;
         } 
-        // Nếu dùng URL rewrite (hoặc path trùng khớp hoàn toàn)
         else if (linkPath === actualCurrentPath) {
             isCurrentPage = true;
         }
@@ -163,6 +181,32 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isCurrentPage) {
             var item = link.closest('li');
             if (item) item.classList.add('current');
+        }
+    });
+
+    // Hide chevron if there is no submenu
+    var allChevrons = menu.querySelectorAll('.mobile-chevron');
+    allChevrons.forEach(function(chevron) {
+        var li = chevron.closest('li');
+        if (li && !li.querySelector('.custom-submenu')) {
+            chevron.style.setProperty('display', 'none', 'important');
+        }
+    });
+
+    // Mobile submenu toggle using event delegation
+    document.addEventListener('click', function(e) {
+        var chevron = e.target.closest('.mobile-chevron');
+        if (chevron && window.innerWidth < 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            var li = chevron.closest('li');
+            var submenu = li.querySelector('.custom-submenu');
+            
+            if (submenu) {
+                submenu.classList.toggle('active');
+                chevron.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
         }
     });
 });

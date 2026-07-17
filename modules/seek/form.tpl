@@ -1,20 +1,52 @@
 <!-- BEGIN: main -->
 <div class="page panel panel-default">
     <div class="panel-body">
-        <h1 class="text-center text-uppercase" style="color: #1a408b; font-weight: bold; margin-top: 40px; margin-bottom: 15px; font-size: 32px;">Tìm kiếm thông tin</h1>
         <div id="search-form">
             <form action="{DATA.action}" name="form_search" method="get" id="form_search" role="form">
                 <input type="hidden" name="{NV_LANG_VARIABLE}" value="{NV_LANG_DATA}" />
                 <input type="hidden" name="{NV_NAME_VARIABLE}" value="{MODULE_NAME}" />
                 
+                <style>
+                    .search-page-title {
+                        color: #1a408b; font-weight: bold; margin-top: 40px; margin-bottom: 15px; font-size: 32px;
+                    }
+                    .custom-search-group {
+                        margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-radius: 6px; display: flex;
+                    }
+                    .custom-search-addon {
+                        background: #fff; border: 1px solid #ced4da; border-right: none; color: #888; border-top-left-radius: 6px; border-bottom-left-radius: 6px; padding: 0 15px 0 20px; display: flex; align-items: center;
+                    }
+                    .custom-search-input {
+                        border: 1px solid #ced4da; border-left: none; box-shadow: none; height: 54px; font-size: 16px; padding: 0 10px; flex: 1; min-width: 0; border-radius: 0;
+                    }
+                    .custom-search-input:focus {
+                        outline: none; box-shadow: none; border-color: #ced4da;
+                    }
+                    .custom-search-btn-wrapper {
+                        display: flex;
+                    }
+                    .custom-search-btn {
+                        background-color: #1a408b; border: 1px solid #1a408b; padding: 0 35px; height: 54px; font-weight: bold; font-size: 16px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; color: white; cursor: pointer; transition: background-color 0.2s;
+                    }
+                    .custom-search-btn:hover { background-color: #112d63; }
+                    
+                    @media (max-width: 767px) {
+                        .search-page-title { font-size: 20px; margin-top: 20px; margin-bottom: 15px; }
+                        .custom-search-addon { padding: 0 8px 0 12px; }
+                        .custom-search-btn { padding: 0 12px; font-size: 13.5px; }
+                        .custom-search-input { font-size: 14px; height: 40px; padding: 0 6px; }
+                        .custom-search-addon, .custom-search-btn { height: 40px; }
+                        .custom-search-group { margin-bottom: 20px; }
+                    }
+                </style>
                 <div style="max-width: 650px; margin: 0 auto;">
-                    <div class="input-group input-group-lg" style="margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-radius: 6px;">
-                        <span class="input-group-addon" style="background: #fff; border: 1px solid #ced4da; border-right: none; color: #888; border-top-left-radius: 6px; border-bottom-left-radius: 6px; padding-left: 20px;">
+                    <div class="custom-search-group">
+                        <span class="custom-search-addon">
                             <i class="fa fa-search"></i>
                         </span>
-                        <input class="form-control" style="border: 1px solid #ced4da; border-left: none; box-shadow: none; height: 54px; font-size: 16px; padding-left: 10px;" id="search_query" name="q" value="{DATA.key}" maxlength="{NV_MAX_SEARCH_LENGTH}" placeholder="Nhập từ khóa tìm kiếm..." />
-                        <span class="input-group-btn">
-                            <button type="submit" id="search_submit" class="btn btn-primary" style="background-color: #1a408b; border-color: #1a408b; padding: 0 35px; height: 54px; font-weight: bold; font-size: 16px; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">{LANG.search_title}</button>
+                        <input class="custom-search-input" id="search_query" name="q" value="{DATA.key}" maxlength="{NV_MAX_SEARCH_LENGTH}" placeholder="Nhập từ khóa tìm kiếm..." />
+                        <span class="custom-search-btn-wrapper">
+                            <button type="submit" id="search_submit" class="custom-search-btn">{LANG.search_title}</button>
                         </span>
                     </div>
 

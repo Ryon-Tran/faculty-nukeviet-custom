@@ -8,6 +8,8 @@
     padding: 8px 0;
     font-family: 'Inter', sans-serif;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 999999;
   }
   .custom-topbar-inner {
     max-width: 1170px;
@@ -75,7 +77,7 @@
   @media (max-width: 639px) {
     .custom-topbar {
       border-radius: 0 !important;
-      overflow: hidden;
+      overflow: visible !important;
       padding: 0;
     }
     .custom-topbar-inner {

@@ -4,21 +4,21 @@
 <link rel="StyleSheet" href="{NV_BASE_SITEURL}themes/{TEMPLATE_CSS}/css/comment.css" type="text/css" />
 <!-- END: header -->
 <div id="idcomment" class="nv-fullbg" data-module="{MODULE_COMM}" data-content="{MODULE_DATA}_commentcontent" data-area="{AREA_COMM}" data-id="{ID_COMM}" data-allowed="{ALLOWED_COMM}" data-checkss="{CHECKSS_COMM}">
-    <div class="row clearfix margin-bottom-lg">
-        <div class="col-xs-12 text-left">
-            <button type="button" class="btn btn-default btn-sm pull-right" onclick="$('.fa', this).toggleClass('fa-eye fa-eye-slash'),nv_show_hidden('showcomment',2);" title="{LANG.comment_hide_show}">
-                <em class="fa fa-eye-slash"></em>
-            </button>
-            <p class="comment-title">
-                <em class="fa fa-comments">&nbsp;</em> {LANG.comment}
-            </p>
+    <div class="row clearfix margin-bottom-lg" style="border-bottom: 2px solid #1a408b; padding-bottom: 12px; margin-bottom: 20px; display: flex; align-items: center;">
+        <div class="col-sm-12 col-xs-24 text-left">
+            <h3 class="comment-title" style="margin: 0; font-size: 18px; font-weight: bold; color: #1a408b; text-transform: uppercase;">
+                <em class="fa fa-comments" style="margin-right: 5px;">&nbsp;</em> {LANG.comment}
+            </h3>
         </div>
-        <div class="col-xs-12 text-right">
-            <select class="form-control" onchange="nv_comment_sort_change(event, this)">
+        <div class="col-sm-12 col-xs-24 text-right" style="display: flex; justify-content: flex-end; gap: 10px;">
+            <select class="form-control" onchange="nv_comment_sort_change(event, this)" style="border-radius: 4px; border: 1px solid #ddd; display: inline-block; width: auto; background-color: #f9f9f9;">
                 <!-- BEGIN: sortcomm -->
                 <option value="{OPTION.key}"{OPTION.selected}>{OPTION.title}</option>
                 <!-- END: sortcomm -->
             </select>
+            <button type="button" class="btn btn-default btn-sm" style="border-radius: 4px; border-color: #ddd; background-color: #f9f9f9;" onclick="$('.fa', this).toggleClass('fa-eye fa-eye-slash'),nv_show_hidden('showcomment',2);" title="{LANG.comment_hide_show}">
+                <em class="fa fa-eye-slash"></em>
+            </button>
         </div>
     </div>
     <div id="showcomment" class="margin-bottom-lg">{COMMENTCONTENT}</div>
@@ -31,18 +31,18 @@
             <input type="hidden" name="pid" value="0" />
             <input type="hidden" name="allowed" value="{ALLOWED_COMM}" />
             <input type="hidden" name="checkss" value="{CHECKSS_COMM}" />
-            <div class="form-group clearfix">
+            <div class="form-group clearfix" style="margin-bottom: 20px;">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <input type="text" name="name" value="{NAME}" {DISABLED} class="form-control" placeholder="{LANG.comment_name}" />
+                    <div class="col-sm-12 col-xs-24" style="margin-bottom: 10px;">
+                        <input type="text" name="name" value="{NAME}" {DISABLED} class="form-control" placeholder="{LANG.comment_name}" style="height: 48px; border-radius: 6px; border: 1px solid #e0e0e0; background: #fafafa; font-size: 15px; box-shadow: none;" />
                     </div>
-                    <div class="col-xs-12">
-                        <input type="email" name="email" value="{EMAIL}" {DISABLED} class="form-control" placeholder="{LANG.comment_email}" />
+                    <div class="col-sm-12 col-xs-24" style="margin-bottom: 10px;">
+                        <input type="email" name="email" value="{EMAIL}" {DISABLED} class="form-control" placeholder="{LANG.comment_email}" style="height: 48px; border-radius: 6px; border: 1px solid #e0e0e0; background: #fafafa; font-size: 15px; box-shadow: none;" />
                     </div>
                 </div>
             </div>
             <div class="form-group clearfix">
-                <textarea class="form-control" style="width: 100%" name="content" id="commentcontent" cols="20" rows="5"></textarea>
+                <textarea class="form-control" style="width: 100%; border-radius: 6px; border: 1px solid #e0e0e0; padding: 15px; background: #fafafa; font-size: 15px; box-shadow: none; resize: vertical;" name="content" id="commentcontent" cols="20" rows="5" placeholder="Mời bạn để lại bình luận..."></textarea>
                 <!-- BEGIN: editor -->
                 <link rel="stylesheet" href="{NV_STATIC_URL}{NV_EDITORSDIR}/ckeditor5-classic/ckeditor.css?t={TIMESTAMP}">
                 <script type="text/javascript" src="{NV_STATIC_URL}{NV_EDITORSDIR}/ckeditor5-classic/ckeditor.js?t={TIMESTAMP}"></script>
@@ -151,8 +151,9 @@
                 </div>
             </div>
             <!-- END: recaptcha -->
-            <div class="form-group text-center">
-                <input type="button" value="{GLANG.reset}" class="reset btn btn-default" onclick="nv_comment_reset(event, this.form);" /> <input type="submit" value="{LANG.comment_submit}" class="btn btn-primary" />
+            <div class="form-group text-center" style="margin-top: 25px; padding-bottom: 20px;">
+                <input type="button" value="{GLANG.reset}" class="reset btn btn-default" style="padding: 10px 30px; border-radius: 30px; border: 1px solid #ccc; font-weight: 600; color: #555; background: #fff; margin-right: 15px; transition: all 0.3s;" onclick="nv_comment_reset(event, this.form);" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='#fff'" /> 
+                <input type="submit" value="{LANG.comment_submit}" class="btn btn-primary" style="padding: 10px 35px; border-radius: 30px; background-color: #1a408b; border-color: #1a408b; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(26,64,139,0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'" />
             </div>
         </form>
         <iframe class="hidden" id="submitcommentarea" name="submitcommentarea"></iframe>

@@ -1,17 +1,17 @@
 <form action="{USER_LOGIN}" method="post" onsubmit="return login_validForm(this);" autocomplete="off" novalidate<!-- BEGIN: recaptcha3 --> data-recaptcha3="1"<!-- END: recaptcha3 -->>
-    <div class="nv-info margin-bottom" data-default="{GLANG.logininfo}">{GLANG.logininfo}</div>
-    <div class="form-detail">
-        <div class="form-group loginstep1">
-            <div class="input-group">
-                <span class="input-group-addon"><em class="fa fa-user fa-lg"></em></span>
-                <input type="text" class="required form-control" placeholder="{GLANG.username_email}" value="" name="nv_login" maxlength="100" data-pattern="/^(.){1,}$/" onkeypress="validErrorHidden(this);" data-mess="{GLANG.username_empty}">
+    <div class="nv-info margin-bottom" data-default="{GLANG.logininfo}" style="text-align: center; color: #666; font-size: 14px; margin-bottom: 20px;">{GLANG.logininfo}</div>
+    <div class="form-detail" style="max-width: 400px; margin: 0 auto;">
+        <div class="form-group loginstep1" style="margin-bottom: 15px;">
+            <div style="position: relative;">
+                <em class="fa fa-user" style="position: absolute; left: 15px; top: 15px; color: #888;"></em>
+                <input type="text" class="required form-control" style="width: 100%; height: 48px; padding-left: 40px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="{GLANG.username_email}" value="" name="nv_login" maxlength="100" data-pattern="/^(.){1,}$/" onkeypress="validErrorHidden(this);" data-mess="{GLANG.username_empty}">
             </div>
         </div>
 
-        <div class="form-group loginstep1">
-            <div class="input-group">
-                <span class="input-group-addon"><em class="fa fa-key fa-lg fa-fix"></em></span>
-                <input type="password" autocomplete="off" class="required form-control" placeholder="{GLANG.password}" value="" name="nv_password" maxlength="100" data-pattern="/^(.){3,}$/" onkeypress="validErrorHidden(this);" data-mess="{GLANG.password_empty}">
+        <div class="form-group loginstep1" style="margin-bottom: 20px;">
+            <div style="position: relative;">
+                <em class="fa fa-lock" style="position: absolute; left: 15px; top: 15px; color: #888;"></em>
+                <input type="password" autocomplete="off" class="required form-control" style="width: 100%; height: 48px; padding-left: 40px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="{GLANG.password}" value="" name="nv_password" maxlength="100" data-pattern="/^(.){3,}$/" onkeypress="validErrorHidden(this);" data-mess="{GLANG.password_empty}">
             </div>
         </div>
 
@@ -54,28 +54,21 @@
         </div>
         <!-- END: recaptcha -->
 
-        <div class="text-center margin-bottom-lg">
+        <div class="text-center margin-bottom-lg" style="margin-bottom: 20px;">
             <!-- BEGIN: header --><input name="nv_header" value="{NV_HEADER}" type="hidden" /><!-- END: header -->
             <!-- BEGIN: redirect --><input name="nv_redirect" value="{REDIRECT}" type="hidden" /><!-- END: redirect -->
-            <input type="button" value="{GLANG.reset}" class="btn btn-default" onclick="validReset(this.form);return!1;" />
-            <button class="bsubmit btn btn-primary" type="submit">{GLANG.loginsubmit}</button>
-           </div>
-
-        <!-- BEGIN: allowuserreg2_form -->
-        <div class="form-group">
-            <div class="text-right clearfix">
-                <a href="javascript:void(0)" onclick="modalShowByObj('#guestReg_{BLOCKID}', 'recaptchareset')">{GLANG.register}</a>
-            </div>
+            <button class="bsubmit btn btn-primary" type="submit" style="width: 100%; height: 48px; background-color: #1a428a; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; text-transform: uppercase; transition: background-color 0.2s;">{GLANG.loginsubmit}</button>
         </div>
-        <!-- END: allowuserreg2_form -->
 
-        <!-- BEGIN: allowuserreg_linkform -->
-        <div class="form-group">
-            <div class="text-right clearfix">
-                <a href="{USER_REGISTER}">{GLANG.register}</a>
-            </div>
+        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-top: 15px;">
+            <!-- BEGIN: allowuserreg_linkform -->
+            <a href="{USER_REGISTER}" style="color: #1a428a; font-weight: 500; text-decoration: none;">{GLANG.register}</a>
+            <!-- END: allowuserreg_linkform -->
+            <!-- BEGIN: allowuserreg2_form -->
+            <a href="javascript:void(0)" onclick="modalShowByObj('#guestReg_{BLOCKID}', 'recaptchareset')" style="color: #1a428a; font-weight: 500; text-decoration: none;">{GLANG.register}</a>
+            <!-- END: allowuserreg2_form -->
+            <a href="{URL_LOSTPASS}" style="color: #666; text-decoration: none;">{GLANG.lostpass}</a>
         </div>
-        <!-- END: allowuserreg_linkform -->
 
         <!-- BEGIN: openid -->
            <div class="text-center openid-btns">

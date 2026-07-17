@@ -164,9 +164,7 @@
         <!-- END: has_yt -->
       </div>
       <span class="custom-topbar-divider"></span>
-      <a href="{NV_BASE_SITEURL}index.php?nv=users" class="custom-topbar-user">
-        {USER_TEXT}
-      </a>
+      {LOGIN_DROPDOWN}
     </div>
   </div>
 </div>

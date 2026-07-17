@@ -1,4 +1,28 @@
 <!-- BEGIN: main -->
+<style>
+/* Modern styling for the user settings page */
+.page { font-family: 'Inter', sans-serif; }
+.page h2.margin-bottom-lg { font-weight: 700; color: #1a428a; font-size: 24px; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+.page .nav-tabs { border-bottom: 2px solid #e2e8f0; margin-bottom: 30px; }
+.page .nav-tabs > li { margin-bottom: -2px; }
+.page .nav-tabs > li > a { border: none; border-bottom: 2px solid transparent; color: #64748b; font-weight: 600; padding: 12px 20px; background: transparent !important; transition: all 0.2s; }
+.page .nav-tabs > li > a:hover { color: #1a428a; border-bottom: 2px solid #cbd5e1; }
+.page .nav-tabs > li.active > a, .page .nav-tabs > li.active > a:focus, .page .nav-tabs > li.active > a:hover { color: #1a428a; border: none; border-bottom: 2px solid #1a428a; background: transparent; }
+.page .dropdown-menu { border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #f0f0f0; padding: 10px 0; }
+.page .dropdown-menu > li > a { padding: 10px 20px; color: #475569; font-weight: 500; }
+.page .dropdown-menu > li.active > a, .page .dropdown-menu > li > a:hover { background-color: #f8fafc; color: #1a428a; }
+.page .well-lg { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 35px; }
+.page .form-control { height: 48px; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: none; padding: 10px 15px; font-size: 15px; transition: all 0.2s; color: #334155; }
+.page .form-control:focus { border-color: #1a428a; box-shadow: 0 0 0 3px rgba(26,66,138,0.15); }
+.page .control-label { font-weight: 600; color: #334155; padding-top: 14px; }
+.page .btn { height: 48px; border-radius: 8px; font-weight: 600; padding: 0 25px; transition: all 0.2s; font-size: 15px; }
+.page .btn-primary { background-color: #1a428a; border-color: #1a428a; }
+.page .btn-primary:hover, .page .btn-primary:focus, .page .btn-primary:active { background-color: #112d61 !important; border-color: #112d61 !important; box-shadow: 0 4px 10px rgba(26,66,138,0.3) !important; }
+.page .btn-default { background-color: #f8fafc; border-color: #cbd5e1; color: #475569; }
+.page .btn-default:hover, .page .btn-default:focus, .page .btn-default:active { background-color: #f1f5f9 !important; color: #0f172a !important; border-color: #94a3b8 !important; }
+.page .alert { border-radius: 8px; }
+.page .table { background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+</style>
 <link type="text/css" href="{NV_STATIC_URL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
 <script type="text/javascript" src="{NV_STATIC_URL}{NV_ASSETS_DIR}/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{NV_STATIC_URL}{NV_ASSETS_DIR}/js/language/jquery.ui.datepicker-{NV_LANG_INTERFACE}.js"></script>

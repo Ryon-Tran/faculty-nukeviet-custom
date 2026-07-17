@@ -51,11 +51,18 @@ if (!nv_function_exists('nv_top_bar_config')) {
         $xtpl = new XTemplate('global.top_bar.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/blocks');
         $xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
         
-        if (defined('NV_IS_USER')) {
-            global $user_info;
-            $xtpl->assign('USER_TEXT', mb_strtoupper($user_info['username'], 'UTF-8'));
+        if (file_exists(NV_ROOTDIR . '/modules/users/blocks/global.login_dropdown.php')) {
+            require_once NV_ROOTDIR . '/modules/users/blocks/global.login_dropdown.php';
+            // Provide the original block_config but ensure 'module' and 'theme' are explicitly set
+            $dummy_config = (is_array($block_config) ? $block_config : []);
+            $dummy_config['module'] = 'users';
+            if (!isset($dummy_config['theme'])) {
+                $dummy_config['theme'] = $global_config['site_theme'] ?? 'default';
+            }
+            $login_dropdown_html = nv_block_login_dropdown($dummy_config);
+            $xtpl->assign('LOGIN_DROPDOWN', $login_dropdown_html);
         } else {
-            $xtpl->assign('USER_TEXT', 'ĐĂNG NHẬP');
+            $xtpl->assign('LOGIN_DROPDOWN', '');
         }
         
         if (!empty($global_config['site_email'])) {

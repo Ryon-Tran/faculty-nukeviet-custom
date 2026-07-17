@@ -1,33 +1,48 @@
 <!-- BEGIN: main -->
 <div class="page panel panel-default">
     <div class="panel-body">
-        <h3 class="text-center margin-bottom-lg">{LANG.info_title}</h3>
-        <div id="search-form" class="text-center">
+        <h1 class="text-center text-uppercase" style="color: #1a408b; font-weight: bold; margin-top: 40px; margin-bottom: 15px; font-size: 32px;">Tìm kiếm thông tin</h1>
+        <div id="search-form">
             <form action="{DATA.action}" name="form_search" method="get" id="form_search" role="form">
                 <input type="hidden" name="{NV_LANG_VARIABLE}" value="{NV_LANG_DATA}" />
                 <input type="hidden" name="{NV_NAME_VARIABLE}" value="{MODULE_NAME}" />
-                <div class="m-bottom">
-                    <div class="form-group">
-                        <label class="sr-only" for="search_query">{LANG.key_title}</label>
-                        <input class="form-control" id="search_query" name="q" value="{DATA.key}" maxlength="{NV_MAX_SEARCH_LENGTH}" placeholder="{LANG.key_title}" />
+                
+                <div style="max-width: 650px; margin: 0 auto;">
+                    <div class="input-group input-group-lg" style="margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-radius: 6px;">
+                        <span class="input-group-addon" style="background: #fff; border: 1px solid #ced4da; border-right: none; color: #888; border-top-left-radius: 6px; border-bottom-left-radius: 6px; padding-left: 20px;">
+                            <i class="fa fa-search"></i>
+                        </span>
+                        <input class="form-control" style="border: 1px solid #ced4da; border-left: none; box-shadow: none; height: 54px; font-size: 16px; padding-left: 10px;" id="search_query" name="q" value="{DATA.key}" maxlength="{NV_MAX_SEARCH_LENGTH}" placeholder="Nhập từ khóa tìm kiếm..." />
+                        <span class="input-group-btn">
+                            <button type="submit" id="search_submit" class="btn btn-primary" style="background-color: #1a408b; border-color: #1a408b; padding: 0 35px; height: 54px; font-weight: bold; font-size: 16px; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">{LANG.search_title}</button>
+                        </span>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="search_query_mod">{LANG.type_search}</label>
-                        <select name="m" id="search_query_mod" class="form-control">
-                            <option value="all">{LANG.search_on_site}</option>
-                            <!-- BEGIN: select_option -->
-                            <option data-adv="{MOD.adv_search}" value="{MOD.value}"{MOD.selected}>{MOD.custom_title}</option>
-                            <!-- END: select_option -->
-                        </select>
+
+                        <!-- Gợi ý từ khóa -->
+                        <div class="text-center" style="margin-bottom: 30px;">
+                            <p class="text-uppercase text-muted" style="font-size: 12px; font-weight: bold; letter-spacing: 1px; margin-bottom: 15px;">Gợi ý từ khóa</p>
+                            <div class="keyword-suggestions">
+                                <a href="javascript:void(0);" onclick="$('#search_query').val('tuyển sinh'); $('#form_search').submit();" class="btn btn-default btn-sm" style="border-radius: 20px; color: #666; margin: 0 5px 10px; border-color: #ddd; padding: 5px 15px;">tuyển sinh</a>
+                                <a href="javascript:void(0);" onclick="$('#search_query').val('sư phạm lịch sử'); $('#form_search').submit();" class="btn btn-default btn-sm" style="border-radius: 20px; color: #666; margin: 0 5px 10px; border-color: #ddd; padding: 5px 15px;">sư phạm lịch sử</a>
+                                <a href="javascript:void(0);" onclick="$('#search_query').val('sư phạm địa lý'); $('#form_search').submit();" class="btn btn-default btn-sm" style="border-radius: 20px; color: #666; margin: 0 5px 10px; border-color: #ddd; padding: 5px 15px;">sư phạm địa lý</a>
+                                <a href="javascript:void(0);" onclick="$('#search_query').val('giáo dục chính trị'); $('#form_search').submit();" class="btn btn-default btn-sm" style="border-radius: 20px; color: #666; margin: 0 5px 10px; border-color: #ddd; padding: 5px 15px;">giáo dục chính trị</a>
+                                <a href="javascript:void(0);" onclick="$('#search_query').val('thông báo'); $('#form_search').submit();" class="btn btn-default btn-sm" style="border-radius: 20px; color: #666; margin: 0 5px 10px; border-color: #ddd; padding: 5px 15px;">thông báo</a>
+                            </div>
+                        </div>
+
+                        <!-- Các input cũ được ẩn đi để giữ nguyên chức năng -->
+                        <div class="hidden" style="display: none;">
+                            <select name="m" id="search_query_mod" class="form-control">
+                                <option value="all">{LANG.search_on_site}</option>
+                                <!-- BEGIN: select_option -->
+                                <option data-adv="{MOD.adv_search}" value="{MOD.value}"{MOD.selected}>{MOD.custom_title}</option>
+                                <!-- END: select_option -->
+                            </select>
+                            <a href="#" class="advSearch">{LANG.search_title_adv}</a>
+                            <input name="l" id="search_logic_and" type="radio" {DATA.andChecked} value="1" />
+                            <input name="l" id="search_logic_or" type="radio" {DATA.orChecked} value="0" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" id="search_submit" value="{LANG.search_title}" class="btn btn-primary" />
-                        <a href="#" class="advSearch">{LANG.search_title_adv}</a>
-                    </div>
-                </div>
-                <div class="radio">
-                    <label class="radio-inline"> <input name="l" id="search_logic_and" type="radio" {DATA.andChecked} value="1" /> {LANG.logic_and}</label>
-                    <label class="radio-inline"> <input name="l" id="search_logic_or" type="radio" {DATA.orChecked} value="0" /> {LANG.logic_or}</label>
                 </div>
                 <input type="hidden" name="page" value="{PAGE}" />
             </form>

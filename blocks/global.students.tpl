@@ -1,5 +1,15 @@
 <!-- BEGIN: main -->
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 w-full">
+    <!-- BEGIN: loop -->
+    <a href="{ROW.link}" title="{ROW.title}" class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-md group cursor-pointer block border border-slate-200 no-underline">
+        <img alt="{ROW.title}" class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" src="{ROW.thumb}" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-white">
+            <span class="text-[#facc15] font-bold text-[11px] uppercase tracking-wider mb-1">Tiêu biểu {ROW.year}</span>
+            <span class="font-['Inter'] font-bold text-sm sm:text-base leading-snug line-clamp-3">{ROW.title}</span>
+        </div>
+    </a>
+    <!-- END: loop -->
+    <!-- BEGIN: nodata -->
     <a href="#" class="aspect-[4/5] relative rounded-2xl overflow-hidden shadow-md group cursor-pointer block border border-slate-200 no-underline">
         <img alt="Sinh viên" class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-white">
@@ -28,5 +38,6 @@
             <span class="font-['Inter'] font-bold text-sm sm:text-base leading-snug line-clamp-3">KỶ NIỆM 15 NĂM NGÀY RA TRƯỜNG - LỚP 06SLS</span>
         </div>
     </a>
+    <!-- END: nodata -->
 </div>
 <!-- END: main -->

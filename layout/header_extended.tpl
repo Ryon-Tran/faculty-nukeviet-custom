@@ -22,7 +22,7 @@
           </div>
           <style>
             @media (min-width: 1024px) {
-                .desktop-massive-title { font-size: 32px !important; line-height: 1 !important; }
+                .desktop-massive-title { font-size: 22px !important; line-height: 1 !important; }
                 .desktop-massive-desc { font-size: 12px !important; }
             }
             @media (min-width: 1280px) {

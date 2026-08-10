@@ -95,15 +95,19 @@ if (!nv_function_exists('nv_block_tuyensinh')) {
             $sql = "SELECT id, catid, title, alias, publtime, hometext FROM " . NV_PREFIXLANG . "_" . $site_mods[$module_name]['module_data'] . "_rows WHERE " . $where . " ORDER BY publtime DESC LIMIT 4";
             try {
                 $result = $db->query($sql);
+                $item_index = 0;
                 while ($row = $result->fetch()) {
+                    $item_index++;
                     $link = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=detail/' . $row['alias'] . '-' . $row['id'] . $global_config['rewrite_exturl'];
                     if (function_exists('nv_url_rewrite')) {
                         $link = nv_url_rewrite($link, true);
                     }
                     
                     $row['link'] = $link;
-                    $row['hometext_clean'] = nv_clean60(strip_tags($row['hometext']), 150);
-                    $row['publtime_format'] = date('d/m/Y', $row['publtime']);
+                    $row['hometext_clean'] = nv_clean60(strip_tags($row['hometext']), 140);
+                    $row['day'] = sprintf('%02d', date('j', $row['publtime']));
+                    $row['month'] = date('n', $row['publtime']);
+                    $row['badge_bg'] = ($item_index == 4) ? 'bg-[#c8102e]' : 'bg-[#18458b]';
                     
                     $xtpl->assign('ROW', $row);
                     $xtpl->parse('main.loop');

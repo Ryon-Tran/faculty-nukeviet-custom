@@ -66,6 +66,20 @@
     display: flex;
     flex-wrap: wrap;
 }
+#block-news-cards-{BLOCK_ID} .news-card-item.col-xs-12 {
+    width: 50%;
+}
+#block-news-cards-{BLOCK_ID} .news-card-item.col-sm-8 {
+    width: 33.33333333%;
+}
+#block-news-cards-{BLOCK_ID} .news-card-item.col-sm-6 {
+    width: 25%;
+}
+@media (max-width: 575px) {
+    #block-news-cards-{BLOCK_ID} .news-card-item.col-xs-12 {
+        width: 100%;
+    }
+}
 #block-news-cards-{BLOCK_ID} .card-item:hover {
     box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
 }

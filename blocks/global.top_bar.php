@@ -36,6 +36,73 @@ if (!nv_function_exists('nv_top_bar_config')) {
         return $return;
     }
 
+    function nv_top_bar_login_dropdown($block_config)
+    {
+        global $global_config, $site_mods, $user_info, $lang_global, $lang_module, $module_file, $module_info, $admin_info, $blockID, $page_url, $nv_redirect;
+
+        if (empty($global_config['allowuserlogin'])) {
+            return '';
+        }
+
+        if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/modules/users/block.login_dropdown.tpl')) {
+            $block_theme = $global_config['module_theme'];
+        } elseif (file_exists(NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/modules/users/block.login_dropdown.tpl')) {
+            $block_theme = $global_config['site_theme'];
+        } else {
+            $block_theme = 'default';
+        }
+
+        if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme'] . '/js/users.js')) {
+            $block_js = $global_config['module_theme'];
+        } elseif (file_exists(NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/js/users.js')) {
+            $block_js = $global_config['site_theme'];
+        } else {
+            $block_js = 'default';
+        }
+
+        if (file_exists(NV_ROOTDIR . '/modules/users/language/' . NV_LANG_INTERFACE . '.php')) {
+            include_once NV_ROOTDIR . '/modules/users/language/' . NV_LANG_INTERFACE . '.php';
+        } elseif (file_exists(NV_ROOTDIR . '/modules/users/language/vi.php')) {
+            include_once NV_ROOTDIR . '/modules/users/language/vi.php';
+        }
+
+        $xtpl = new XTemplate('block.login_dropdown.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/modules/users');
+        $xtpl->assign('LANG', isset($lang_module) ? $lang_module : []);
+        $xtpl->assign('GLANG', $lang_global);
+        $xtpl->assign('BLOCK_JS', $block_js);
+        $xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
+
+        if (defined('NV_IS_USER')) {
+            if (!empty($user_info['avata'])) {
+                $avata = $user_info['avata'];
+            } else {
+                $avata = NV_STATIC_URL . 'themes/' . $block_theme . '/images/users/no_avatar.png';
+            }
+            $xtpl->assign('AVATA', $avata);
+            $xtpl->assign('USER', $user_info);
+            $xtpl->assign('URL_MODULE', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users');
+            $xtpl->assign('URL_HREF', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users&amp;' . NV_OP_VARIABLE . '=');
+            $xtpl->assign('URL_LOGOUT', defined('NV_IS_ADMIN') ? 'nv_admin_logout' : 'bt_logout');
+
+            if (defined('NV_IS_ADMIN')) {
+                $xtpl->parse('signed.admintoolbar');
+            }
+
+            $xtpl->parse('signed');
+            return $xtpl->text('signed');
+        } else {
+            $xtpl->assign('USER_LOGIN', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users&amp;' . NV_OP_VARIABLE . '=login');
+            $xtpl->assign('USER_REGISTER', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users&amp;' . NV_OP_VARIABLE . '=register');
+            $xtpl->assign('URL_LOSTPASS', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users&amp;' . NV_OP_VARIABLE . '=lostpass');
+            $xtpl->assign('USER_LOSTPASS', NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=users&amp;' . NV_OP_VARIABLE . '=lostpass');
+            $xtpl->assign('NV_REDIRECT', nv_redirect_encrypt(NV_MY_DOMAIN . (empty($page_url) ? '' : nv_url_rewrite(str_replace('&amp;', '&', $page_url), true))));
+
+            $xtpl->parse('main.display_form');
+            $xtpl->parse('main');
+            return $xtpl->text('main');
+        }
+    }
+
     function nv_top_bar($block_config)
     {
         global $global_config, $lang_global;
@@ -51,19 +118,8 @@ if (!nv_function_exists('nv_top_bar_config')) {
         $xtpl = new XTemplate('global.top_bar.tpl', NV_ROOTDIR . '/themes/' . $block_theme . '/blocks');
         $xtpl->assign('NV_BASE_SITEURL', NV_BASE_SITEURL);
         
-        if (file_exists(NV_ROOTDIR . '/modules/users/blocks/global.login_dropdown.php')) {
-            require_once NV_ROOTDIR . '/modules/users/blocks/global.login_dropdown.php';
-            // Provide the original block_config but ensure 'module' and 'theme' are explicitly set
-            $dummy_config = (is_array($block_config) ? $block_config : []);
-            $dummy_config['module'] = 'users';
-            if (!isset($dummy_config['theme'])) {
-                $dummy_config['theme'] = $global_config['site_theme'] ?? 'default';
-            }
-            $login_dropdown_html = nv_block_login_dropdown($dummy_config);
-            $xtpl->assign('LOGIN_DROPDOWN', $login_dropdown_html);
-        } else {
-            $xtpl->assign('LOGIN_DROPDOWN', '');
-        }
+        $login_dropdown_html = nv_top_bar_login_dropdown($block_config);
+        $xtpl->assign('LOGIN_DROPDOWN', $login_dropdown_html);
         
         if (!empty($global_config['site_email'])) {
             $xtpl->assign('TOP_EMAIL', $global_config['site_email']);
